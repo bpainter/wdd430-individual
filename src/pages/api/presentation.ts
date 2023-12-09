@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { ObjectId } from 'mongodb';
 import connectToDatabase from '../../lib/mongodb';
-import { Speaking } from '../../../src/models/speaking';
+import { Presentation } from '../../models/presentation';
 
-export default async function speakingHandler(req: NextApiRequest, res: NextApiResponse) {
+export default async function presentationsHandler(req: NextApiRequest, res: NextApiResponse) {
   const db = await connectToDatabase();
-  const collection = db.collection('speaking');
+  const collection = db.collection('presentations');
 
   switch (req.method) {
     case 'GET':
@@ -13,24 +13,24 @@ export default async function speakingHandler(req: NextApiRequest, res: NextApiR
       const limit = parseInt(req.query.limit as string) || 10;
       const skip = (page - 1) * limit;
 
-      const speaking = await collection.find({}).skip(skip).limit(limit).toArray();
-      res.status(200).json(speaking);
+      const presentations = await collection.find({}).skip(skip).limit(limit).toArray();
+      res.status(200).json(presentations);
       break;
     case 'POST':
-      const newSpeaking = req.body;
-      const result = await collection.insertOne(newSpeaking);
-      const insertedSpeaking = await collection.findOne({ _id: result.insertedId });
-      res.status(201).json(insertedSpeaking);
+      const newPresentation = req.body;
+      const result = await collection.insertOne(newPresentation);
+      const insertedPresentation = await collection.findOne({ _id: result.insertedId });
+      res.status(201).json(insertedPresentation);
       break;
     case 'PUT':
-      const { _id, ...updatedSpeaking } = req.body;
+      const { _id, ...updatedPresentation } = req.body;
       const updateResult = await collection.updateOne(
         { _id: new ObjectId(_id) },
-        { $set: { ...updatedSpeaking } }
+        { $set: { ...updatedPresentation } }
       );
 
       if (updateResult.matchedCount === 0) {
-        return res.status(404).json({ error: 'Speaking not found' });
+        return res.status(404).json({ error: 'Presentation not found' });
       }
 
       const updatedItem = await collection.findOne({ _id: new ObjectId(_id) });
@@ -41,7 +41,7 @@ export default async function speakingHandler(req: NextApiRequest, res: NextApiR
       const deleteResult = await collection.deleteOne({ _id: new ObjectId(_idToDelete) });
 
       if (deleteResult.deletedCount === 0) {
-        return res.status(404).json({ error: 'Speaking not found' });
+        return res.status(404).json({ error: 'Presentation not found' });
       }
 
       res.status(200).json({ message: 'Deleted successfully' });
