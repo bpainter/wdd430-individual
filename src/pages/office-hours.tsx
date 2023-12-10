@@ -4,7 +4,6 @@ import { Fragment, useEffect, useState } from 'react';
 import { CalendarIcon } from '@heroicons/react/24/solid';
 import axios from 'axios';
 import moment from 'moment';
-import { StringExpression } from 'mongoose';
 
 declare let Calendly: any;
 

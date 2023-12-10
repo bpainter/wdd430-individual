@@ -2,6 +2,7 @@
 import { Document } from 'mongoose';
 
 export interface IMeandering extends Document {
+  [key: string]: any;
   title: string;
   postDate: Date;
   updateDate?: Date;
