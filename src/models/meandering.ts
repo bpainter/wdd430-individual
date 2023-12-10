@@ -1,6 +1,8 @@
-import mongoose from 'mongoose';
+// models/meandering.ts
+import mongoose, { Schema } from 'mongoose';
+import { IMeandering } from '../types/meandering';
 
-const meanderingSchema = new mongoose.Schema({
+const meanderingSchema: Schema = new Schema({
   title: { type: String, required: true },
   postDate: { type: Date, default: Date.now },
   updateDate: Date,
@@ -10,4 +12,4 @@ const meanderingSchema = new mongoose.Schema({
   image: String,
 });
 
-export const Meandering = mongoose.models.Meandering || mongoose.model('Meandering', meanderingSchema);
+export const Meandering = mongoose.models.Meandering || mongoose.model<IMeandering>('Meandering', meanderingSchema);

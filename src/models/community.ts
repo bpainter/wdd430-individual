@@ -1,6 +1,8 @@
-import mongoose from 'mongoose';
+// models/community.ts
+import mongoose, { Schema } from 'mongoose';
+import { ICommunityEvent } from '../types/community';
 
-const communityEventSchema = new mongoose.Schema({
+const communityEventSchema: Schema = new Schema({
   title: { type: String, required: true },
   date: { type: Date, required: true },
   description: String,
@@ -8,4 +10,4 @@ const communityEventSchema = new mongoose.Schema({
   organization: String,
 });
 
-export const CommunityEvent = mongoose.models.CommunityEvent || mongoose.model('CommunityEvent', communityEventSchema);
+export const CommunityEvent = mongoose.models.CommunityEvent || mongoose.model<ICommunityEvent>('CommunityEvent', communityEventSchema);

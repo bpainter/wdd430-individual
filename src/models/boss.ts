@@ -1,12 +1,5 @@
-
-import mongoose, { Schema, Document } from 'mongoose';
-
-interface IBoss extends Document {
-  username: string;
-  password: string;
-  name: string;
-  avatar: string;
-}
+import mongoose, { Schema } from 'mongoose';
+import { IBoss } from '../types/boss';
 
 const bossSchema: Schema = new Schema({
   username: { type: String, required: true },
