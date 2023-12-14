@@ -5,7 +5,7 @@ import { Speaking } from '../../../src/models/speaking';
 
 export default async function speakingHandler(req: NextApiRequest, res: NextApiResponse) {
   const db = await connectToDatabase();
-  const collection = db.collection('speaking');
+  const collection = db.collection('speakings');
 
   switch (req.method) {
     case 'GET':
@@ -14,6 +14,7 @@ export default async function speakingHandler(req: NextApiRequest, res: NextApiR
       const skip = (page - 1) * limit;
 
       const speaking = await collection.find({}).skip(skip).limit(limit).toArray();
+      console.log('Speaking data:', speaking); // Log speaking data
       res.status(200).json(speaking);
       break;
     case 'POST':
