@@ -15,13 +15,13 @@ const Navigation: React.FC = () => {
   const { pathname } = useRouter();
 
   return (
-    <nav className="flex flex-col w-2/10 items-stretch justify-end p-4">  
+    <nav className="flex flex-col w-1/5 items-stretch justify-end bg-indigo-600 p-4">  
       <div className="space-y-1">
         {navigation.map((item) => (
           <Link 
             key={item.name} 
             href={item.href}
-            className={`flex items-center space-x-3 py-2 px-3 rounded-md ${pathname === item.href ? 'bg-gray-700' : ''}`}
+            className={`flex items-center space-x-3 py-2 px-3 rounded-md ${pathname === item.href ? 'bg-white text-gray-900' : 'hover:bg-indigo-700 hover:text-white focus:bg-indigo-700 focus:text-white'}`}
           >
             <item.icon className="h-6 w-6" />
             <span>{item.name}</span>
