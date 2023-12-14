@@ -9,7 +9,6 @@ const Header: React.FC = () => {
       <div className="flex flex-col w-3/10 items-end justify-end p-4">
         <Image src="/profile.jpg" alt="Profile" width={200} height={200} className="rounded-full" />
         <div className="flex space-x-4">
-          <SocialIcon url="https://twitter.com" className="h-6 w-6 text-white" />
           <SocialIcon url="https://instagram.com" className="h-6 w-6 text-white" />
           <SocialIcon url="https://mastodon.social" className="h-6 w-6 text-white" />
           <SocialIcon url="https://github.com" className="h-6 w-6 text-white" />

@@ -7,7 +7,6 @@ const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon },
   { name: 'Meanderings', href: '/meanderings', icon: InboxIcon },
   { name: 'Speaking', href: '/speaking', icon: ChatBubbleLeftIcon },
-  { name: 'Community', href: '/community', icon: UsersIcon },
   { name: 'Office Hours', href: '/office-hours', icon: CalendarIcon },
   { name: 'Contact', href: '/contact', icon: EnvelopeIcon },
 ];
